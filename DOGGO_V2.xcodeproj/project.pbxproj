@@ -27,13 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E02E16923827936007C7CA0 /* Bluefruit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bluefruit-Bridging-Header.h"; sourceTree = "<group>"; };
 		1E02E16B2382811B007C7CA0 /* BLECentralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLECentralViewController.swift; sourceTree = "<group>"; };
 		1E02E16E23837F0F007C7CA0 /* UUIDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDKey.swift; sourceTree = "<group>"; };
 		1E02E17023837F39007C7CA0 /* UartModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UartModuleViewController.swift; sourceTree = "<group>"; };
 		1E02E17223837F72007C7CA0 /* PeripheralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewCell.swift; sourceTree = "<group>"; };
 		5C52CC7F2384CFB4008A0E57 /* BluetoothTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BluetoothTableViewController.swift; path = "DOGGO-redo/BluetoothTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		5C83E7A02372E0120016DD16 /* DOGGO_V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOGGO_V2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C83E7A02372E0120016DD16 /* DOGGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOGGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C83E7A32372E0120016DD16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C83E7A52372E0120016DD16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5C83E7A72372E0120016DD16 /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 				1E02E17023837F39007C7CA0 /* UartModuleViewController.swift */,
 				1E02E17223837F72007C7CA0 /* PeripheralTableViewCell.swift */,
 				1E02E16E23837F0F007C7CA0 /* UUIDKey.swift */,
+				1E02E16B2382811B007C7CA0 /* BLECentralViewController.swift */,
 				5C83E7A22372E0120016DD16 /* DOGGO-redo */,
 				5C83E7A12372E0120016DD16 /* Products */,
 			);
@@ -83,7 +83,7 @@
 		5C83E7A12372E0120016DD16 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C83E7A02372E0120016DD16 /* DOGGO_V2.app */,
+				5C83E7A02372E0120016DD16 /* DOGGO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,8 +93,6 @@
 			children = (
 				1E02E16A23827BEA007C7CA0 /* Storyboards */,
 				5C83E7A32372E0120016DD16 /* AppDelegate.swift */,
-				1E02E16B2382811B007C7CA0 /* BLECentralViewController.swift */,
-				1E02E16923827936007C7CA0 /* Bluefruit-Bridging-Header.h */,
 				5C83E7A52372E0120016DD16 /* SceneDelegate.swift */,
 				5C52CC7F2384CFB4008A0E57 /* BluetoothTableViewController.swift */,
 				5C83E7A72372E0120016DD16 /* PetViewController.swift */,
@@ -127,7 +125,7 @@
 			);
 			name = DOGGO_V2;
 			productName = "DOGGO-redo";
-			productReference = 5C83E7A02372E0120016DD16 /* DOGGO_V2.app */;
+			productReference = 5C83E7A02372E0120016DD16 /* DOGGO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -340,15 +338,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VW2FLXYRYW;
+				DEVELOPMENT_TEAM = MA34DD9P5H;
 				INFOPLIST_FILE = "DOGGO-redo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = happymonkeys;
-				PRODUCT_NAME = DOGGO_V2;
+				PRODUCT_BUNDLE_IDENTIFIER = happymonkeysm;
+				PRODUCT_NAME = DOGGO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,15 +359,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VW2FLXYRYW;
+				DEVELOPMENT_TEAM = MA34DD9P5H;
 				INFOPLIST_FILE = "DOGGO-redo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = happymonkeys;
-				PRODUCT_NAME = DOGGO_V2;
+				PRODUCT_BUNDLE_IDENTIFIER = happymonkeysm;
+				PRODUCT_NAME = DOGGO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

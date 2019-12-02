@@ -7,9 +7,30 @@
 //
 
 import UIKit
+import CoreBluetooth
+import CoreLocation
 
-class BluetoothTableViewController: UITableViewController {
+// MARK: - Core Bluetooth service IDs
+let BLE_UART_Service_CBUUID = CBUUID(string: kBLEService_UUID)
+//let BLE_Battery_Service_CBUUID = CBUUID(string: "0x")
 
+// MARK: - Core Bluetooth characteristic IDs
+//let BLE_Battery_Characteristic_CBUUID = CBUUID(string: "0x")
+let BLE_UART_Characteristic_CBUUID_TX = kBLE_Characteristic_uuid_Tx
+let BLE_UART_Characteristic_CBUUID_RX = kBLE_Characteristic_uuid_Rx
+
+class BluetoothTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate {
+    
+
+    //MARK: - Class Variables
+    var locationManager: CLLocationManager?
+    var centralManager: CBCentralManager?
+    var peripheralHeartRateMonitor: CBPeripheral?
+    
+    // MARK: - UI outlets / member variables
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +39,11 @@ class BluetoothTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestAlwaysAuthorization()
+        
+        view.backgroundColor = .gray
     }
 
     // MARK: - Table view data source
@@ -32,6 +58,53 @@ class BluetoothTableViewController: UITableViewController {
         return 0
     }
 
+    //MARK: - Bluetooth Functions
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+            
+            case .unknown:
+                print("Bluetooth status is UNKNOWN")
+                //bluetoothOffLabel.alpha = 1.0
+            case .resetting:
+                print("Bluetooth status is RESETTING")
+                //bluetoothOffLabel.alpha = 1.0
+            case .unsupported:
+                print("Bluetooth status is UNSUPPORTED")
+                //bluetoothOffLabel.alpha = 1.0
+            case .unauthorized:
+                print("Bluetooth status is UNAUTHORIZED")
+                //bluetoothOffLabel.alpha = 1.0
+            case .poweredOff:
+                print("Bluetooth status is POWERED OFF")
+                //bluetoothOffLabel.alpha = 1.0
+            case .poweredOn:
+                print("Bluetooth status is POWERED ON")
+                
+//                DispatchQueue.main.async { () -> Void in
+//                    self.bluetoothOffLabel.alpha = 0.0
+//                    self.connectingActivityIndicator.startAnimating()
+//                }
+                
+                // STEP 3.2: scan for peripherals that we're interested in
+                centralManager?.scanForPeripherals(withServices: [BLE_UART_Service_CBUUID])
+                
+            } // END switch
+            
+        } // END func centralManagerDidUpdateState
+    
+    //MARK: - Location Functions
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for:
+                CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    // do stuff
+                }
+                
+            }
+        }
+        
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

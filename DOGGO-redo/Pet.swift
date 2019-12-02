@@ -11,17 +11,16 @@ import UIKit
 import os.log
 
 class Pet: NSObject, NSCoding {
-    //MARK: Properties
     
+    //MARK: Properties
     var petname: String = ""
     var petphoto: UIImage?
     var petstatus: Int = 0
     var petowner: String = ""
     var petaddress: String = ""
     var ownernumber: String = ""
-    
+
     //MARK: Archiving Paths
-     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("pets")
     

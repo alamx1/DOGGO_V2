@@ -33,8 +33,12 @@
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Allow the app to use Bluetooth</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>DOGGO needs to connect to the DOGGO board</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>DOGGO would like to access your location to display the pet's relative location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need permission to show exact location</string>
+	<string>DOGGO would like to access your location to display the pet's relative location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow to add photo from phone</string>
 	<key>UIApplicationSceneManifest</key>

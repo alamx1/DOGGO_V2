@@ -9,23 +9,29 @@
 import UIKit
 import os.log
 import CoreBluetooth
+import CoreLocation
 
-class PetViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PetViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //MARK: properties
+    var locationManager: CLLocationManager?
+    var newPet: Pet?
+    
+    //MARK: - Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var ownerTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var phoneNumTextField: UITextField!
+    @IBOutlet weak var distanceReading: UILabel!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     /*
      This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new meal.
      */
-    var newPet: Pet?
+   
     
     //MARK: Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -75,6 +81,11 @@ class PetViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         ownerTextField.delegate = self
         addressTextField.delegate = self
         phoneNumTextField.delegate = self
+        
+        //Request Location Access
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestAlwaysAuthorization()
         
         // Set up views if editing an existing Pet.
         if let pet = newPet {
@@ -164,6 +175,74 @@ class PetViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
     }
+
+//MARK: - Location Functions
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for:
+                CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    // do stuff
+                    startScanning()
+                }
+                
+            }
+        }
+    }
+    
+    func startScanning() {
+        //let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        let uuid = UUID(uuidString: "DC1DDFE3-5801-4C69-B587-8BC388326425")!//Generated from terminal running uuidgen
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 0, minor: 0, identifier: "DOGGO_Beacon")
+        
+        locationManager?.startMonitoring(for: beaconRegion)
+        locationManager?.startRangingBeacons(in: beaconRegion)
+    }
+    
+//    func update(distance: CLProximity) { UIView.animate(withDuration: 1) {
+//        switch distance {
+//            case .unknown:
+//                self.view.backgroundColor = UIColor.gray
+//                self.distanceReading.text = "UNKNOWN"
+//            case .far:
+//                self.view.backgroundColor = UIColor.blue
+//                self.distanceReading.text = "FAR"
+//            case .near:
+//                self.view.backgroundColor = UIColor.orange
+//                self.distanceReading.text = "NEAR"
+//            case .immediate:
+//                self.view.backgroundColor = UIColor.red
+//                self.distanceReading.text = "RIGHT HERE"
+//            }
+//        }
+//    }
+    func update(distance: CLProximity) { UIView.animate(withDuration: 2) {
+        switch distance {
+            case .far:
+                //self.view.backgroundColor = UIColor.blue
+                self.distanceReading.text = "FAR"
+            case .near:
+                //self.view.backgroundColor = UIColor.orange
+                self.distanceReading.text = "NEAR"
+            case .immediate:
+                //self.view.backgroundColor = UIColor.red
+                self.distanceReading.text = "RIGHT HERE"
+            
+            default:
+                //self.view.backgroundColor = UIColor.gray
+                self.distanceReading.text = "LOCATING..."
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if let beacon = beacons.first {
+            update(distance: beacon.proximity)
+        } else {
+            update(distance: .unknown)
+        }
+    }
+    
 }
 
 
