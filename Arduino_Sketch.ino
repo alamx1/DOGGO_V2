@@ -163,12 +163,12 @@ void setup(void)
   Serial.print(F("Setting up beacon"));
   adBeacon();
 
-//  ble.verbose(false);  // debug info is a little annoying after this point!
-//  /* Wait for connection */
-//  while (! ble.isConnected()) {
-//      delay(500);
-//  }
-//
+  ble.verbose(false);  // debug info is a little annoying after this point!
+  /* Wait for connection */
+  while (! ble.isConnected()) {
+      delay(500);
+  }
+
 //  // LED Activity command is only supported from 0.6.6
 //  if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
 //  {
